@@ -19,7 +19,7 @@ void main(void) {
 	LOG_INF("Beginning main() ...");
 
 	// Prepare hardware components/peripherals
-	led0_gpio.configure(GPIO_OUTPUT_ACTIVE);
+	app_gpio::manager_t gpio_manager(std::make_tuple(led0_gpio, GPIO_OUTPUT_ACTIVE));
 
 	// Prepare ble structures
 	app_ble::manager_t ble_manager;

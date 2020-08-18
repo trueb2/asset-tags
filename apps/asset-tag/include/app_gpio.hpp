@@ -6,18 +6,21 @@
 #include <devicetree.h>
 #include <drivers/gpio.h>
 
-#include <string_view>
+#include <array>
 #include <cstring>
 #include <stdexcept>
+#include <string_view>
+#include <tuple>
 
+namespace app_gpio {
 
-struct gpio_t {
+struct pin_t {
     std::string_view label;
     uint32_t pin;
     uint32_t flags;
     device*  device_binding;
 
-    explicit constexpr gpio_t(bool status_okay, std::string_view label, uint32_t pin, uint32_t flags) 
+    explicit constexpr pin_t(bool status_okay, std::string_view label, uint32_t pin, uint32_t flags) 
     : label(label), pin(pin), flags(flags), device_binding(nullptr) {
         if(!status_okay) {
             std::string_view message_begin = "Invalid label: ";
@@ -41,6 +44,18 @@ struct gpio_t {
     }
 };
 
+template<typename ... T>
+struct manager_t {
+    std::array<std::tuple<pin_t, uint32_t>, sizeof...(T)> pin_confs;
+
+    explicit constexpr manager_t(T&& ... pin_conf_args) 
+        : pin_confs({std::move(pin_conf_args...)}) {
+        for(auto & [pin, flags] : pin_confs) {
+            pin.configure(flags);
+        }
+    }
+};
+
 using namespace std::literals;
 
 #define PREPARE_GPIO(label) struct label ## _binding_t { \
@@ -49,11 +64,13 @@ using namespace std::literals;
     static constexpr const uint32_t   pin         = DT_GPIO_PIN(DT_ALIAS(label), gpios); \
     static constexpr const uint32_t   flags       = DT_GPIO_FLAGS(DT_ALIAS(label), gpios); \
 }; \
-gpio_t label ## _gpio( \
+app_gpio::pin_t label ## _gpio( \
     label ## _binding_t::status_okay, \
     label ## _binding_t::label, \
     label ## _binding_t::pin, \
     label ## _binding_t::flags);
+
+}
 
 
 #endif
