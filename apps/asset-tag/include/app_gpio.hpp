@@ -1,5 +1,5 @@
-#ifndef APP_INCLUDE_LED_H
-#define APP_INCLUDE_LED_H
+#ifndef APP_INCLUDE_GPIO_HPP
+#define APP_INCLUDE_GPIO_HPP
 
 #include <zephyr.h>
 #include <device.h>
@@ -7,6 +7,7 @@
 #include <drivers/gpio.h>
 
 #include <string_view>
+#include <cstring>
 #include <stdexcept>
 
 
@@ -21,8 +22,8 @@ struct gpio_t {
         if(!status_okay) {
             std::string_view message_begin = "Invalid label: ";
             char message[message_begin.size() + label.size()] = {};
-            memcpy(message, message_begin.begin(), message_begin.size());
-            memcpy(message + message_begin.size(), label.begin(), label.size());
+            std::memcpy(message, message_begin.begin(), message_begin.size());
+            std::memcpy(message + message_begin.size(), label.begin(), label.size());
             throw std::logic_error(message);
         }
 

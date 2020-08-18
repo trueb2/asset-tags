@@ -1,6 +1,8 @@
 #include <app_log.hpp>
 #include <app_exception.hpp>
-#include <app_led.hpp>
+#include <app_gpio.hpp>
+#include <app_ble.hpp>
+#include <app_saadc.hpp>
 
 /**
  * Asset tag life cycle
@@ -13,18 +15,24 @@
 
 PREPARE_GPIO(led0);
 
-void main(void)
-{
+void main(void) {
 	LOG_INF("Beginning main() ...");
+
+	// Prepare hardware components/peripherals
 	led0_gpio.configure(GPIO_OUTPUT_ACTIVE);
 
+	// Prepare ble structures
+	app_ble::manager_t ble_manager;
+
+	// Handle lifecycle
 	bool led_is_on = true;
 	while (1) {
 		led0_gpio.set(led_is_on);
 		led_is_on = !led_is_on;
-
 		LOG_INF("LED is on: %d", (int) led_is_on);
-		log_process(false);
+
+		app_saadc::measure();
+
 		k_sleep(k_timeout_t{K_SECONDS(1)});
 	}
 }

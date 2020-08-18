@@ -33,7 +33,7 @@ bootloader_flash: bootloader
 
 .PHONY: app 
 app:
-	west build -p auto -d build_${APP_BUILD_DIR} -b ${BOARD} ${APP_SRC_DIR} -- -DCONFIG_BOOTLOADER_MCUBOOT=y
+	west build -p auto -d build_${APP_BUILD_DIR} -b ${BOARD} ${APP_SRC_DIR}
 	west sign -t imgtool -d build_${APP_BUILD_DIR} -- --key ${BOOTLOADER_KEY} 
 
 .PHONY: app_flash 
