@@ -11,6 +11,8 @@ APP_SRC_DIR            := apps/asset-tag
 SIGNED_HEX             := $(abspath build_${APP_BUILD_DIR}/zephyr/zephyr.signed.hex)
 SIGNED_BIN             := $(abspath build_${APP_BUILD_DIR}/zephyr/zephyr.signed.bin)
 
+SMP_NAME               := QSIB_ASSET
+
 .PHONY: build
 build: bootloader app
 	@echo Done!
@@ -54,6 +56,14 @@ jlink-gdbclient:
 
 logs:
 	JLinkRTTClient
+
+smp-list:
+	newtmgr --conntype ble --connstring ctlr_name=hci0,peer_name='${SMP_NAME}' image list
+
+smp-dfu:
+	newtmgr --conntype ble --connstring ctlr_name=hci0,peer_name='${SMP_NAME}' image list
+	newtmgr --conntype ble --connstring ctlr_name=hci0,peer_name='${SMP_NAME}' image upload build_${APP_BUILD_DIR}/zephyr/zephyr.signed.bin
+	newtmgr --conntype ble --connstring ctlr_name=hci0,peer_name='${SMP_NAME}' image list
 
 .PHONY: clean
 clean:

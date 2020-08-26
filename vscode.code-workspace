@@ -1,0 +1,46 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"C_Cpp.default.intelliSenseMode": "gcc-arm",
+		"C_Cpp.default.cppStandard": "c++17",
+		"C_Cpp.default.cStandard": "c99",
+		"C_Cpp.default.forcedInclude": [
+			"${workspaceFolder}/.vscode/vscode_c_cpp_undef.h",
+			"${workspaceFolder}/build_app/zephyr/include/generated/autoconf.h",
+			"/Users/jwtrueb/Desktop/workspace/asset-tracking/asset-tags/zephyr/include/toolchain/zephyr_stdint.h",
+			"/Users/jwtrueb/Desktop/workspace/asset-tracking/asset-tags/zephyr/lib/libc/newlib/include/stdint.h",
+		],
+		"C_Cpp.default.systemIncludePath": [
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/arm-none-eabi/9.3.1/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../arm-none-eabi/lib/arm-none-eabi/9.3.1/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../arm-none-eabi/lib/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../arm-none-eabi/usr/lib/arm-none-eabi/9.3.1/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../arm-none-eabi/usr/lib/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include-fixed/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/c++/9.3.1",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/c++/9.3.1/arm-none-eabi",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/",
+			"/Users/jwtrueb/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/",
+		],
+		"C_Cpp.loggingLevel": "Debug",
+		"files.associations": {
+			"string_view": "cpp",
+			"*.tcc": "cpp",
+			"deque": "cpp",
+			"list": "cpp",
+			"string": "cpp",
+			"unordered_map": "cpp",
+			"vector": "cpp",
+			"system_error": "cpp",
+			"array": "cpp"
+		}
+	}
+}

@@ -1,6 +1,8 @@
 #ifndef APP_INCLUDE_GPIO_HPP
 #define APP_INCLUDE_GPIO_HPP
 
+#include <app_log.hpp>
+
 #include <zephyr.h>
 #include <device.h>
 #include <devicetree.h>
@@ -33,6 +35,7 @@ struct pin_t {
     }
 
     void configure(uint32_t extra_flags) {
+        LOG_DBG("Configuring %s on %d", label.data(), pin);
         device_binding = device_get_binding(label.data());
         if(gpio_pin_configure(device_binding, pin, extra_flags | flags)) {
             throw std::runtime_error("Failed to configure gpio");
@@ -46,10 +49,10 @@ struct pin_t {
 
 template<typename ... T>
 struct manager_t {
-    std::array<std::tuple<pin_t, uint32_t>, sizeof...(T)> pin_confs;
+    std::array<std::tuple<pin_t&, uint32_t>, sizeof...(T)> pin_confs;
 
     explicit constexpr manager_t(T&& ... pin_conf_args) 
-        : pin_confs({std::move(pin_conf_args...)}) {
+        : pin_confs({std::forward<T...>(pin_conf_args...)}) {
         for(auto & [pin, flags] : pin_confs) {
             pin.configure(flags);
         }

@@ -8,6 +8,7 @@
 #include <device.h>
 #include <drivers/adc.h>
 #include <drivers/sensor.h>
+
 #include <hal/nrf_gpio.h>
 #include <hal/nrf_saadc.h>
 
