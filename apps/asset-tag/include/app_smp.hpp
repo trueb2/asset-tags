@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stats/stats.h>
-#include <mgmt/mcumgr/buf.h>
+#include <mgmt/buf.h>
 
 #ifdef CONFIG_MCUMGR_CMD_FS_MGMT
 #include <device.h>
@@ -27,7 +27,7 @@
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/conn.h>
 #include <bluetooth/gatt.h>
-#include <mgmt/mcumgr/smp_bt.h>
+#include <mgmt/smp_bt.h>
 #endif
 
 #ifdef CONFIG_MCUMGR_CMD_FS_MGMT
